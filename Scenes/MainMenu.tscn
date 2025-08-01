@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw7wly08a4l3w"]
+
+[ext_resource type="Script" uid="uid://d0fkrnkitdx06" path="res://Scripts/DifficultySelector.gd" id="1_tt5f1"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchor_right = 0.0347222
+anchor_bottom = 0.0617284
+script = ExtResource("1_tt5f1")
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 421.0
+offset_top = 82.0
+offset_right = 564.0
+offset_bottom = 105.0
+scale = Vector2(2.53925, 2.68726)
+text = "ShapeShift - Arena"
+
+[node name="DifficultyLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 507.0
+offset_top = 195.0
+offset_right = 577.0
+offset_bottom = 218.0
+scale = Vector2(2.24, 2.1391)
+text = "Difficulty"
+
+[node name="EasyButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 533.0
+offset_top = 270.0
+offset_right = 541.0
+offset_bottom = 278.0
+scale = Vector2(2.057, 1.52)
+text = "easy"
+
+[node name="MediumButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 503.0
+offset_top = 333.0
+offset_right = 575.0
+offset_bottom = 364.0
+scale = Vector2(2.057, 1.52)
+text = "Medium"
+
+[node name="HardButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 533.0
+offset_top = 397.0
+offset_right = 580.0
+offset_bottom = 428.0
+scale = Vector2(2.057, 1.52)
+text = "Hard"
+
+[node name="InsaneButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 521.0
+offset_top = 460.0
+offset_right = 581.0
+offset_bottom = 491.0
+scale = Vector2(2.057, 1.52)
+text = "Insane
+"
+
+[connection signal="pressed" from="EasyButton" to="." method="_on_easy_button_pressed"]
+[connection signal="pressed" from="MediumButton" to="." method="_on_medium_button_pressed"]
+[connection signal="pressed" from="HardButton" to="." method="_on_hard_button_pressed"]
+[connection signal="pressed" from="InsaneButton" to="." method="_on_insane_button_pressed"]

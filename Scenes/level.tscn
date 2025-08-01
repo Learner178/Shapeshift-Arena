@@ -1,15 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://de1pwgx76ne0u"]
+[gd_scene load_steps=6 format=3 uid="uid://de1pwgx76ne0u"]
 
+[ext_resource type="Script" uid="uid://btjtmdb2t0mwu" path="res://Scripts/level.gd" id="1_6phgx"]
 [ext_resource type="PackedScene" uid="uid://bn6aisipqehlx" path="res://Scenes/player.tscn" id="1_tumq0"]
+[ext_resource type="PackedScene" uid="uid://bhnyshfdcev2b" path="res://Scenes/enemy.tscn" id="2_k5f4k"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tumq0"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tumq0"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_6phgx")
 
 [node name="Player" parent="." instance=ExtResource("1_tumq0")]
-position = Vector2(571, 285)
+position = Vector2(313, 408)
+
+[node name="Enemy" parent="." instance=ExtResource("2_k5f4k")]
+position = Vector2(854, 417)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(595, 532)
