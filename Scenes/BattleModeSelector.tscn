@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://f780toeyow3o"]
+
+[node name="BattleModeSelector" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer(ForButtons)" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Race" type="TextureButton" parent="VBoxContainer(ForButtons)"]
+layout_mode = 2
+
+[node name="Platform" type="TextureButton" parent="VBoxContainer(ForButtons)"]
+layout_mode = 2
+
+[node name="VBoxContainer(ForTexture)" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="RaceBG" type="TextureRect" parent="VBoxContainer(ForTexture)"]
+layout_mode = 2
+
+[node name="PlatformBG" type="TextureRect" parent="VBoxContainer(ForTexture)"]
+layout_mode = 2

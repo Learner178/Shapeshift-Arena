@@ -18,6 +18,7 @@ config/icon="res://Assets/icon.svg"
 [autoload]
 
 GameSettings="*res://Scripts/GameSettings.gd"
+CoinManager="*res://Scripts/CoinManager.gd"
 
 [dotnet]
 

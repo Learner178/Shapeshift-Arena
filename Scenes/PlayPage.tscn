@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv7tj2vcpv68u"]
+
+[ext_resource type="Script" uid="uid://8fettpmr71pe" path="res://PlayPage.gd" id="1_fmbqp"]
+
+[node name="PlayPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fmbqp")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SinglePlayer" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MutiPlayer" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Skins" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Settings" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="CoinLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
