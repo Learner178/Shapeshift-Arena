@@ -9,11 +9,12 @@ size = Vector2(26, 26)
 [node name="Player" type="RigidBody2D" groups=["players"]]
 script = ExtResource("1_onrkg")
 
-[node name="Marker2D (AttackOrigin)" type="Marker2D" parent="."]
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_i3pqv")
+
+[node name="Marker2D (AttackOrigin)" type="Marker2D" parent="."]
+position = Vector2(0, 6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.57628e-07)
