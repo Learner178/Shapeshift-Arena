@@ -1,31 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://de1pwgx76ne0u"]
+[gd_scene load_steps=2 format=3 uid="uid://de1pwgx76ne0u"]
 
 [ext_resource type="Script" uid="uid://btjtmdb2t0mwu" path="res://Scripts/level.gd" id="1_6phgx"]
-[ext_resource type="PackedScene" uid="uid://bn6aisipqehlx" path="res://Scenes/player.tscn" id="1_tumq0"]
-[ext_resource type="PackedScene" uid="uid://bhnyshfdcev2b" path="res://Scenes/enemy.tscn" id="2_k5f4k"]
-[ext_resource type="Texture2D" uid="uid://c2eimjmk8qfvp" path="res://Assets/png-clipart-number-line-design-number-art.png" id="4_81xng"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tumq0"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tumq0"]
-
-[node name="Main" type="Node2D"]
+[node name="PlatformLevel" type="Node2D"]
 script = ExtResource("1_6phgx")
-
-[node name="Player" parent="." instance=ExtResource("1_tumq0")]
-position = Vector2(313, 408)
-
-[node name="Enemy" parent="." instance=ExtResource("2_k5f4k")]
-position = Vector2(854, 417)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(595, 532)
-physics_material_override = SubResource("PhysicsMaterial_tumq0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_tumq0")
-
-[node name="Png-clipart-number-line-design-number-art" type="Sprite2D" parent="."]
-position = Vector2(597, 640)
-scale = Vector2(0.345, 0.345)
-texture = ExtResource("4_81xng")

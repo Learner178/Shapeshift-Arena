@@ -9,7 +9,9 @@ size = Vector2(26, 26)
 [node name="Player" type="RigidBody2D" groups=["players"]]
 script = ExtResource("1_onrkg")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_i3pqv")
 

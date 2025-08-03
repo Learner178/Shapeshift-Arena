@@ -10,11 +10,13 @@ extends RigidBody2D
 @onready var ground_check: Node2D = $GroundCheck
 @onready var ray_ground: RayCast2D = $GroundCheck/RayCastGround
 @onready var shape: CollisionShape2D = $CollisionShape2D
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Sprite2D = $Pivot/Sprite2D
 @onready var shapeshift_timer: Timer = $ShapeShiftTimer
 
 var shapes = ["circle", "square", "capsule", "triangle", "rocket", "magnet", "hexagon", "helium"]
 var current_shape = ""
+var lock_body_rotation = false
+
 
 func _ready():
     randomize()
@@ -58,11 +60,23 @@ func _physics_process(delta):
                 apply_central_impulse(Vector2(0, -jump_force * bounce_force))
 
         "rocket":
-            if direction != 0:
-                rotation += direction * delta * 2.5
-            if Input.is_action_pressed("jump"):
-                var thrust = Vector2.UP.rotated(rotation) * rocket_thrust * delta
-                apply_central_impulse(thrust)
+                var rocket_max_angle_deg = 80
+                var rocket_tilt_speed = 60.0
+                var rocket_upright_damping = 4.0
+                var rocket_thrust = 1000.0
+
+                if direction != 0:
+                    $Pivot.rotation_degrees += direction * rocket_tilt_speed * delta
+                    $Pivot.rotation_degrees = clamp($Pivot.rotation_degrees, -rocket_max_angle_deg, rocket_max_angle_deg)
+                else:
+                    # Return to upright when idle
+                    $Pivot.rotation = lerp($Pivot.rotation, 0.0, rocket_upright_damping * delta)
+
+                # 2. Thrust in the tilted direction (UP relative to pivot)
+                if Input.is_action_pressed("jump"):
+                    var thrust_dir = -$Pivot.transform.y.normalized()  # Local UP direction
+                    apply_central_impulse(thrust_dir * rocket_thrust * delta)
+
 
         "helium":
             if direction != 0:
@@ -77,6 +91,11 @@ func _physics_process(delta):
             if Input.is_action_just_pressed("jump") and ray_ground.is_colliding():
                 apply_central_impulse(Vector2(0, -jump_force))
             check_for_metal_surfaces()
+            
+    if lock_body_rotation:
+        rotation = 0
+        angular_velocity = 0
+
 
 func shapeshift():
     var selected = shapes.pick_random()
@@ -88,6 +107,8 @@ func shapeshift():
             sprite.texture = preload("res://Assets/football.png")
             sprite.scale = Vector2(0.025, 0.025)
             apply_physics_material(0.5, 0.2, 1.0, 0.0, 0.1)
+            
+            lock_body_rotation = false
 
         "square":
             var rect = RectangleShape2D.new()
@@ -96,6 +117,8 @@ func shapeshift():
             sprite.texture = preload("res://Assets/square.png")
             sprite.scale = Vector2(0.08, 0.08)
             apply_physics_material(0.4, 0.1, 1.0, 0.0, 0.2)
+            
+            lock_body_rotation = false
 
         "capsule":
             shape.shape = CapsuleShape2D.new()
@@ -103,6 +126,8 @@ func shapeshift():
             sprite.scale = Vector2(0.02, 0.02)
             sprite.rotation_degrees = 90
             apply_physics_material(0.4, 0.6, 1.0, 0.1, 0.2)
+            
+            lock_body_rotation = false
 
         "triangle":
             var tri = ConvexPolygonShape2D.new()
@@ -111,6 +136,8 @@ func shapeshift():
             sprite.texture = preload("res://Assets/triangle.png")
             sprite.scale = Vector2(0.03, 0.03)
             apply_physics_material(0.3, 0.2, 1.0, 0.0, 0.2) 
+            
+            lock_body_rotation = false
 
         "rocket":
             var rect = RectangleShape2D.new()
@@ -118,7 +145,14 @@ func shapeshift():
             shape.shape = rect
             sprite.texture = preload("res://Assets/rocket.png")
             sprite.scale = Vector2(0.05, 0.05)
+            sprite.rotation_degrees = 0
+            $Pivot.rotation = 0
             apply_physics_material(0.4, 0.2, 0.3, 1.0, 0.8)
+            
+            # Lock rotation for rocket only
+            lock_body_rotation = true
+            rotation = 0  # ensure upright
+            angular_velocity = 0
 
         "hexagon":
             var hex = ConvexPolygonShape2D.new()
@@ -136,18 +170,29 @@ func shapeshift():
             sprite.rotation_degrees = 30
             sprite.scale = Vector2(0.05, 0.05)
             apply_physics_material(0.5, 0.2, 1.0, 0.0, 0.1)
+            
+            lock_body_rotation = false
 
         "magnet":
             shape.shape = CircleShape2D.new()
             sprite.texture = preload("res://Assets/magnet.png")
             sprite.scale = Vector2(0.03, 0.03)
             apply_physics_material(0.75, 0.1, 1.0, 0.0, 0.05)
+            
+            lock_body_rotation = false
 
         "helium":
             shape.shape = CircleShape2D.new()
             sprite.texture = preload("res://Assets/Balloon.png")
             sprite.scale = Vector2(0.14, 0.14)
-            apply_physics_material(0.2, 0.1, 0.05, 0.2, 0.05)   
+            sprite.rotation_degrees = 0
+            $Pivot.rotation = 0
+            apply_physics_material(0.2, 0.1, 0.05, 0.2, 0.05)
+            
+            # Lock rotation to stay upright
+            lock_body_rotation = true
+            rotation = 0
+            angular_velocity = 0   
 
     print("Shapeshifted into: ", selected)
 
