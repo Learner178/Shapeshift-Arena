@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg3xd8v14g5d5"
-path="res://.godot/imported/Dynamite.png-810d6b991c3f3403df78d218422c6cbd.ctex"
+uid="uid://beveyumg6jrnl"
+path="res://.godot/imported/1_Industrial_Tileset_1B.png-5ff4c6261f5c6b350ba022f1569a27a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Dynamite.png"
-dest_files=["res://.godot/imported/Dynamite.png-810d6b991c3f3403df78d218422c6cbd.ctex"]
+source_file="res://Assets/Industrial Tileset - Starter Pack 32p/1_Industrial_Tileset_1B.png"
+dest_files=["res://.godot/imported/1_Industrial_Tileset_1B.png-5ff4c6261f5c6b350ba022f1569a27a8.ctex"]
 
 [params]
 

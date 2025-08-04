@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqc6tkb6uy3qc"
-path="res://.godot/imported/magnet.png-0d9d0689e3cc0528094f5a3f7c37f12f.ctex"
+uid="uid://c2eimjmk8qfvp"
+path="res://.godot/imported/png-clipart-number-line-design-number-art.png-c7bc7304237205d3318d8cdb5450b3f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/magnet.png"
-dest_files=["res://.godot/imported/magnet.png-0d9d0689e3cc0528094f5a3f7c37f12f.ctex"]
+source_file="res://Assets/Characters/png-clipart-number-line-design-number-art.png"
+dest_files=["res://.godot/imported/png-clipart-number-line-design-number-art.png-c7bc7304237205d3318d8cdb5450b3f0.ctex"]
 
 [params]
 

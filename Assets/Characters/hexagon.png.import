@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nc5wi0bgg35p"
-path="res://.godot/imported/Balloon.png-cd16aa946295f7336fca43529ec85274.ctex"
+uid="uid://dbs787ijx3f70"
+path="res://.godot/imported/hexagon.png-d830ae66757a6eecd3179913f842849c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Balloon.png"
-dest_files=["res://.godot/imported/Balloon.png-cd16aa946295f7336fca43529ec85274.ctex"]
+source_file="res://Assets/Characters/hexagon.png"
+dest_files=["res://.godot/imported/hexagon.png-d830ae66757a6eecd3179913f842849c.ctex"]
 
 [params]
 

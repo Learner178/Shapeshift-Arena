@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://quhmbmvhpok5"
-path="res://.godot/imported/0_Template_Tileset.png-f04712feb7154d675f14af9ee0d2ec58.ctex"
+uid="uid://cns356yxuml0c"
+path="res://.godot/imported/american-football.png-0975ee2278acdd9f02acebf5c3a7f4e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/5. Industrial Tileset - Starter Pack 32p/0_Template_Tileset.png"
-dest_files=["res://.godot/imported/0_Template_Tileset.png-f04712feb7154d675f14af9ee0d2ec58.ctex"]
+source_file="res://Assets/Characters/american-football.png"
+dest_files=["res://.godot/imported/american-football.png-0975ee2278acdd9f02acebf5c3a7f4e2.ctex"]
 
 [params]
 

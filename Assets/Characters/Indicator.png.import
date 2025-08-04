@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://emnqre3g5ye5"
-path="res://.godot/imported/square.png-61c4a753b7128eae57d99b6156842b1d.ctex"
+uid="uid://fohomod4tien"
+path="res://.godot/imported/Indicator.png-74e79b12d8ccab0be58e34ae10a571a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/square.png"
-dest_files=["res://.godot/imported/square.png-61c4a753b7128eae57d99b6156842b1d.ctex"]
+source_file="res://Assets/Characters/Indicator.png"
+dest_files=["res://.godot/imported/Indicator.png-74e79b12d8ccab0be58e34ae10a571a7.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6d1xjjx3j45a"
-path="res://.godot/imported/rocket.png-e75edc9709bbd7eb4dcea68a1d1caccc.ctex"
+uid="uid://dg3xd8v14g5d5"
+path="res://.godot/imported/Dynamite.png-cc7c58f6c40bf06b04ef4c9dfc3e86b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/rocket.png"
-dest_files=["res://.godot/imported/rocket.png-e75edc9709bbd7eb4dcea68a1d1caccc.ctex"]
+source_file="res://Assets/Characters/Dynamite.png"
+dest_files=["res://.godot/imported/Dynamite.png-cc7c58f6c40bf06b04ef4c9dfc3e86b4.ctex"]
 
 [params]
 

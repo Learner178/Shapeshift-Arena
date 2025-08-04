@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bybv46smtxbrj"
-path="res://.godot/imported/football.png-99ea9ecad7e6e2c613e899a658cc5cf4.ctex"
+uid="uid://b6d1xjjx3j45a"
+path="res://.godot/imported/rocket.png-23f6559ba3e1e735ab3ea148a3d8be1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/football.png"
-dest_files=["res://.godot/imported/football.png-99ea9ecad7e6e2c613e899a658cc5cf4.ctex"]
+source_file="res://Assets/Characters/rocket.png"
+dest_files=["res://.godot/imported/rocket.png-23f6559ba3e1e735ab3ea148a3d8be1a.ctex"]
 
 [params]
 

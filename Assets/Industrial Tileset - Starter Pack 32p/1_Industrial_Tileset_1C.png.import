@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccdg3qhxw4lee"
-path="res://.godot/imported/3_Far_Background_Tile.png-44672592d512bbe7a20d3f6793d3c892.ctex"
+uid="uid://dre8ia1pu12ta"
+path="res://.godot/imported/1_Industrial_Tileset_1C.png-e284fa79a225e415ac54cbf5eadb685f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/5. Industrial Tileset - Starter Pack 32p/3_Far_Background_Tile.png"
-dest_files=["res://.godot/imported/3_Far_Background_Tile.png-44672592d512bbe7a20d3f6793d3c892.ctex"]
+source_file="res://Assets/Industrial Tileset - Starter Pack 32p/1_Industrial_Tileset_1C.png"
+dest_files=["res://.godot/imported/1_Industrial_Tileset_1C.png-e284fa79a225e415ac54cbf5eadb685f.ctex"]
 
 [params]
 

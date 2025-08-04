@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cjeahj7dpaob"]
 
-[ext_resource type="Texture2D" uid="uid://bybv46smtxbrj" path="res://Assets/football.png" id="1_njov2"]
-[ext_resource type="Texture2D" uid="uid://m14xo8f8hwh5" path="res://Assets/PistonGun SpriteSheet.png" id="2_njov2"]
+[ext_resource type="Texture2D" uid="uid://bybv46smtxbrj" path="res://Assets/Characters/football.png" id="1_njov2"]
+[ext_resource type="Texture2D" uid="uid://m14xo8f8hwh5" path="res://Assets/Characters/PistonGun SpriteSheet.png" id="2_njov2"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2au82"]
 load_path = "res://.godot/imported/BubbleProtector.png-6269077cb36dcc94958dcb16939fe6c2.ctex"

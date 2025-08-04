@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m14xo8f8hwh5"
-path="res://.godot/imported/PistonGun SpriteSheet.png-3189473e34e315f4c9fd5de00182b9b5.ctex"
+uid="uid://drdrtc2cy7fd5"
+path="res://.godot/imported/1_Industrial_Tileset_1.png-e12f37152ccaf20911c7585324b61b53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PistonGun SpriteSheet.png"
-dest_files=["res://.godot/imported/PistonGun SpriteSheet.png-3189473e34e315f4c9fd5de00182b9b5.ctex"]
+source_file="res://Assets/Industrial Tileset - Starter Pack 32p/1_Industrial_Tileset_1.png"
+dest_files=["res://.godot/imported/1_Industrial_Tileset_1.png-e12f37152ccaf20911c7585324b61b53.ctex"]
 
 [params]
 

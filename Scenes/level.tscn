@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://de1pwgx76ne0u"]
 
 [ext_resource type="Script" uid="uid://btjtmdb2t0mwu" path="res://Scripts/level.gd" id="1_6phgx"]
-[ext_resource type="Texture2D" uid="uid://drdrtc2cy7fd5" path="res://Assets/5. Industrial Tileset - Starter Pack 32p/1_Industrial_Tileset_1.png" id="2_6phgx"]
+[ext_resource type="Texture2D" uid="uid://drdrtc2cy7fd5" path="res://Assets/Industrial Tileset - Starter Pack 32p/1_Industrial_Tileset_1.png" id="2_6phgx"]
 [ext_resource type="PackedScene" uid="uid://bhnyshfdcev2b" path="res://Scenes/enemy.tscn" id="2_wqkje"]
 [ext_resource type="PackedScene" uid="uid://bn6aisipqehlx" path="res://Scenes/player.tscn" id="3_0f350"]
 [ext_resource type="Script" uid="uid://bq87lrqcr1xpt" path="res://Scripts/KillZone.gd" id="3_81xng"]
@@ -216,32 +216,14 @@ size = Vector2(2142, 299)
 
 [node name="PlatformLevel" type="Node2D"]
 script = ExtResource("1_6phgx")
-
-[node name="Enemy" parent="." instance=ExtResource("2_wqkje")]
-position = Vector2(851, 138)
-
-[node name="Player" parent="." instance=ExtResource("3_0f350")]
-position = Vector2(303, 131)
+player_scene = ExtResource("3_0f350")
+enemy_scene = ExtResource("2_wqkje")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-
-[node name="SpawnPoints" type="Node2D" parent="."]
-
-[node name="Spawn1" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(302, 133)
-
-[node name="Spawn2" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(850, 139)
-
-[node name="Spawn3" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(361, 337)
-
-[node name="Spawn4" type="Marker2D" parent="SpawnPoints"]
-position = Vector2(793, 340)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_0f350")
@@ -270,6 +252,20 @@ script = ExtResource("3_81xng")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZoneBottom"]
 position = Vector2(569, 901)
 shape = SubResource("RectangleShape2D_bvt00")
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Spawn1" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(302, 133)
+
+[node name="Spawn2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(850, 139)
+
+[node name="Spawn3" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(361, 337)
+
+[node name="Spawn4" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(793, 340)
 
 [connection signal="body_entered" from="KillZoneRight" to="KillZoneRight" method="_on_body_entered"]
 [connection signal="body_entered" from="KillZoneLeft" to="KillZoneLeft" method="_on_body_entered"]

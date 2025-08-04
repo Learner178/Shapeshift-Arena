@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://distd3igbxmrm"
-path="res://.godot/imported/2_Industrial_Tileset_1C_Background_Violet.png-b9ad0e0fb7f103c18c30225aef57c2e7.ctex"
+uid="uid://m14xo8f8hwh5"
+path="res://.godot/imported/PistonGun SpriteSheet.png-c9f32a72f78f591909c82ca4cdf416ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/5. Industrial Tileset - Starter Pack 32p/2_Industrial_Tileset_1C_Background_Violet.png"
-dest_files=["res://.godot/imported/2_Industrial_Tileset_1C_Background_Violet.png-b9ad0e0fb7f103c18c30225aef57c2e7.ctex"]
+source_file="res://Assets/Characters/PistonGun SpriteSheet.png"
+dest_files=["res://.godot/imported/PistonGun SpriteSheet.png-c9f32a72f78f591909c82ca4cdf416ae.ctex"]
 
 [params]
 

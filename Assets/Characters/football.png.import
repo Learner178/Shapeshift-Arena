@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2eimjmk8qfvp"
-path="res://.godot/imported/png-clipart-number-line-design-number-art.png-24fef8086f3b4547b2d586a8cf734c7d.ctex"
+uid="uid://bybv46smtxbrj"
+path="res://.godot/imported/football.png-4b84d2297740c77665075c1c8ae2bc8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/png-clipart-number-line-design-number-art.png"
-dest_files=["res://.godot/imported/png-clipart-number-line-design-number-art.png-24fef8086f3b4547b2d586a8cf734c7d.ctex"]
+source_file="res://Assets/Characters/football.png"
+dest_files=["res://.godot/imported/football.png-4b84d2297740c77665075c1c8ae2bc8e.ctex"]
 
 [params]
 
