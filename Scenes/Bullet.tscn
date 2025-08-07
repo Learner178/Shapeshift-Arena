@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ksreda0n2ybd"]
+
+[ext_resource type="Script" uid="uid://5rdsa0ak8u6m" path="res://Scripts/bullet.gd" id="1_14k46"]
+[ext_resource type="Texture2D" uid="uid://ptlaesl8sqts" path="res://Assets/Weapons/medium_bullet.png" id="2_qvus8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pypll"]
+size = Vector2(2, 0.5)
+
+[node name="Bullet" type="Area2D"]
+scale = Vector2(4.5, 4.5)
+script = ExtResource("1_14k46")
+
+[node name="MediumBullet" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("2_qvus8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pypll")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

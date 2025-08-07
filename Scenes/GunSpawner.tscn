@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf48x8h3hcq7y"]
+
+[ext_resource type="Script" uid="uid://c2ufdaivh55wy" path="res://Scripts/GunSpawner.gd" id="1_lor2l"]
+[ext_resource type="PackedScene" uid="uid://1prndupe7xjy" path="res://Scenes/Gun.tscn" id="2_lln4j"]
+
+[node name="GunSpawner" type="Node2D" node_paths=PackedStringArray("spawn_positions")]
+script = ExtResource("1_lor2l")
+gun_scene = ExtResource("2_lln4j")
+spawn_positions = [NodePath("Node2D/Marker2D"), NodePath("Node2D/Marker2D2"), NodePath("Node2D/Marker2D3"), NodePath("Node2D/Marker2D4"), NodePath("Node2D/Marker2D5"), NodePath("Node2D/Marker2D6")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Node2D"]
+position = Vector2(148, 94)
+
+[node name="Marker2D2" type="Marker2D" parent="Node2D"]
+position = Vector2(968, 82)
+
+[node name="Marker2D3" type="Marker2D" parent="Node2D"]
+position = Vector2(578, 204)
+
+[node name="Marker2D4" type="Marker2D" parent="Node2D"]
+position = Vector2(273, 314)
+
+[node name="Marker2D5" type="Marker2D" parent="Node2D"]
+position = Vector2(836, 304)
+
+[node name="Marker2D6" type="Marker2D" parent="Node2D"]
+position = Vector2(583, 499)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

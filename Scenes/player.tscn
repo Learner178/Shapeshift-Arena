@@ -38,4 +38,6 @@ position = Vector2(0, -37)
 scale = Vector2(0.135, 0.135)
 texture = ExtResource("3_6t5aa")
 
+[node name="WeaponHolder" type="Node2D" parent="."]
+
 [connection signal="timeout" from="ShapeShiftTimer" to="." method="_on_shape_shift_timer_timeout"]

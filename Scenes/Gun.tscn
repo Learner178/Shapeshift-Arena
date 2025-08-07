@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://1prndupe7xjy"]
+
+[ext_resource type="Script" uid="uid://be2wkobbfykre" path="res://Scripts/Gun.gd" id="1_m3ict"]
+[ext_resource type="PackedScene" uid="uid://ksreda0n2ybd" path="res://Scenes/Bullet.tscn" id="2_cgpo0"]
+[ext_resource type="Texture2D" uid="uid://cbpdf1rj27520" path="res://Assets/Weapons/assaultrifle.png" id="3_37v6b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phyfd"]
+size = Vector2(40, 6)
+
+[node name="Gun" type="Area2D"]
+script = ExtResource("1_m3ict")
+bullet_scene = ExtResource("2_cgpo0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_phyfd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("3_37v6b")
+
+[node name="FireCooldownTimer" type="Timer" parent="."]
+
+[node name="AimTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="FireCooldownTimer" to="." method="_on_FireCooldownTimer_timeout"]
+[connection signal="timeout" from="AimTimer" to="." method="_on_AimTimer_timeout"]

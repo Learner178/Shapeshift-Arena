@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://de1pwgx76ne0u"]
+[gd_scene load_steps=12 format=3 uid="uid://de1pwgx76ne0u"]
 
 [ext_resource type="Script" uid="uid://btjtmdb2t0mwu" path="res://Scripts/level.gd" id="1_6phgx"]
 [ext_resource type="PackedScene" uid="uid://bhnyshfdcev2b" path="res://Scenes/enemy.tscn" id="2_wqkje"]
 [ext_resource type="PackedScene" uid="uid://bn6aisipqehlx" path="res://Scenes/player.tscn" id="3_0f350"]
 [ext_resource type="Script" uid="uid://bq87lrqcr1xpt" path="res://Scripts/KillZone.gd" id="3_81xng"]
 [ext_resource type="Texture2D" uid="uid://l7wh4qs8qh8k" path="res://Assets/Industrial Tileset - Starter Pack 32p/Group 16 (1).png" id="6_0f350"]
+[ext_resource type="PackedScene" uid="uid://bf48x8h3hcq7y" path="res://Scenes/GunSpawner.tscn" id="6_8c0lf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8c0lf"]
 size = Vector2(33.8805, 75.452)
@@ -174,6 +175,8 @@ position = Vector2(793, 340)
 tile_set = SubResource("TileSet_754fn")
 format = 2
 layer_0/tile_data = PackedInt32Array(589828, 589824, 1, 589829, 589824, 1, 589830, 655360, 1, 589831, 720896, 1, 589832, 786432, 1, 589833, 589824, 1, 589837, 589824, 1, 589838, 589824, 1, 589839, 655360, 1, 589840, 720896, 1, 589841, 786432, 1, 589842, 589824, 1, 524292, 0, 0, 524293, 589824, 0, 524294, 655360, 0, 524295, 720896, 0, 524296, 786432, 0, 524297, 65536, 0, 524301, 0, 0, 524302, 589824, 0, 524303, 655360, 0, 524304, 720896, 0, 524305, 786432, 0, 524306, 65536, 0, 589846, 0, 0, 589824, 65536, 0, 655360, 589824, 0, 655361, 655360, 0, 655362, 720896, 0, 655363, 786432, 0, 655364, 589824, 0, 655365, 655360, 0, 655366, 720896, 0, 655367, 589824, 0, 655368, 655360, 0, 655369, 720896, 0, 655373, 589824, 0, 655374, 655360, 0, 655375, 720896, 0, 655376, 786432, 0, 655377, 589824, 0, 655378, 655360, 0, 655379, 720896, 0, 655380, 786432, 0, 655381, 720896, 0, 655382, 786432, 0, 262148, 262144, 1, 262149, 327680, 1, 262150, 393216, 1, 262151, 458752, 1, 262159, 262144, 1, 262160, 327680, 1, 262161, 393216, 1, 262162, 458752, 1, 65555, 262144, 1, 65556, 327680, 1, 65557, 393216, 1, 65558, 458752, 1, 65536, 262144, 1, 65537, 327680, 1, 65538, 393216, 1, 65539, 458752, 1, 65545, 262144, 1, 65546, 262144, 1, 65547, 327680, 1, 65548, 393216, 1, 720903, 393216, 1, 786440, 393216, 1, 786442, 393216, 1, 720907, 393216, 1, 786444, 393216, 1, 786446, 393216, 1, 720911, 393216, 1)
+
+[node name="GunSpawner" parent="." instance=ExtResource("6_8c0lf")]
 
 [connection signal="body_entered" from="KillZoneRight" to="KillZoneRight" method="_on_body_entered"]
 [connection signal="body_entered" from="KillZoneLeft" to="KillZoneLeft" method="_on_body_entered"]

@@ -18,6 +18,9 @@ var shapes = ["circle", "square", "capsule", "triangle", "rocket", "magnet", "he
 var current_shape = ""
 var lock_body_rotation = false
 
+var held_weapon = null
+var facing_right = true  # Update this based on input
+
 # AI movement
 var direction := 0
 var jump_requested := false
@@ -244,4 +247,10 @@ func apply_physics_material(friction: float, bounce: float, gravity_scale := 1.0
 	self.gravity_scale = gravity_scale
 	self.linear_damp = linear_damp
 	self.angular_damp = angular_damp
-	
+
+func pick_up_weapon(weapon_node):
+	held_weapon = weapon_node
+	weapon_node.weapon_owner = self
+	weapon_node.get_parent().remove_child(weapon_node)
+	add_child(weapon_node)
+	weapon_node.position = Vector2.ZERO  # Hold at center or use socket point

@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(26, 26)
 
-[node name="Enemy" type="RigidBody2D"]
+[node name="Enemy" type="RigidBody2D" groups=["Enemy"]]
 script = ExtResource("1_1f0kj")
 
 [node name="Pivot" type="Node2D" parent="."]

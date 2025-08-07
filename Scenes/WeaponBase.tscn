@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3xoupmeqjqym"]
+
+[ext_resource type="Script" uid="uid://bp00qseucvwsc" path="res://Scripts/WeaponBase.gd" id="1_6efqm"]
+[ext_resource type="PackedScene" uid="uid://1prndupe7xjy" path="res://Scenes/Gun.tscn" id="2_2jbto"]
+
+[node name="WeaponBase" type="Area2D"]
+script = ExtResource("1_6efqm")
+
+[node name="FireCooldowbTimer" type="Timer" parent="."]
+
+[node name="Gun" parent="." instance=ExtResource("2_2jbto")]

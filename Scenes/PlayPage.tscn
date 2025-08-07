@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dv7tj2vcpv68u"]
 
-[ext_resource type="Script" uid="uid://8fettpmr71pe" path="res://PlayPage.gd" id="1_fmbqp"]
+[ext_resource type="Script" uid="uid://8fettpmr71pe" path="res://Scripts/PlayPage.gd" id="1_fmbqp"]
 
 [node name="PlayPage" type="Control"]
 layout_mode = 3
