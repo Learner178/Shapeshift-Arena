@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://co2y7qi7j5tj0"]
+
+[ext_resource type="PackedScene" uid="uid://1prndupe7xjy" path="res://Scenes/Gun.tscn" id="1_dk60g"]
+[ext_resource type="Texture2D" uid="uid://d0n6mk202bamm" path="res://Assets/Weapons/pistol2.png" id="2_ebdfm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gf3gw"]
+size = Vector2(15, 7)
+
+[node name="Gun" instance=ExtResource("1_dk60g")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_gf3gw")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_ebdfm")
+
+[node name="Muzzle" parent="." index="4"]
+position = Vector2(8, -3)

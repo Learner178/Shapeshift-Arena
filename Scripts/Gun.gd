@@ -3,12 +3,53 @@ extends "res://Scripts/WeaponBase.gd"
 @export var bullet_scene: PackedScene
 @export var aim_delay := 0.2  # Delay between aim updates
 @export var max_shots := 5
+@export var weapon_type: String = "pistol" # pistol, rifle, revolver, shotgun
+
 
 var target_enemy: Node2D = null
 var shots_fired := 0
 var aim_timer := 0.0
 
+# These will be set automatically based on weapon_type in _ready()
+var fire_rate := 0.5
+var damage := 10
+var bullet_speed := 400
+var spread := 0.0
+var shots_per_fire := 1
+var max_ammo := 6
+
+
 func _ready():
+    match weapon_type:
+        "pistol":
+            fire_rate = 0.5
+            damage = 10
+            bullet_speed = 400
+            spread = 0.0
+            shots_per_fire = 1
+            max_ammo = 6
+        "rifle":
+            fire_rate = 0.1
+            damage = 8
+            bullet_speed = 600
+            spread = 0.05
+            shots_per_fire = 1
+            max_ammo = 30
+        "revolver":
+            fire_rate = 0.6
+            damage = 20
+            bullet_speed = 450
+            spread = 0.02
+            shots_per_fire = 1
+            max_ammo = 6
+        "shotgun":
+            fire_rate = 1.0
+            damage = 6
+            bullet_speed = 350
+            spread = 0.2
+            shots_per_fire = 5
+            max_ammo = 2
+    
     $AimTimer.wait_time = aim_delay
     $AimTimer.start()
     $FireCooldownTimer.wait_time = 0.5  # Cooldown after each shot
@@ -55,41 +96,45 @@ func update_target():
 
 func fire():
     if not can_fire or weapon_owner == null or bullet_scene == null:
-        print("not shot")
         return
 
-    var direction = Vector2.RIGHT.rotated(global_rotation)
+    for i in range(shots_per_fire):
+        var dir = Vector2.RIGHT.rotated(global_rotation)
+        
+        # Apply spread for multi-bullet weapons like shotgun
+        if spread > 0.0:
+            var spread_angle = randf_range(-spread, spread)
+            dir = dir.rotated(spread_angle)
+        
+        # Spawn position from Muzzle if available
+        var spawn_pos: Vector2
+        if has_node("Muzzle"):
+            spawn_pos = $Muzzle.global_position
+        else:
+            spawn_pos = global_position + dir * 20
+        
+        var bullet = bullet_scene.instantiate()
+        bullet.global_position = spawn_pos
+        bullet.rotation = dir.angle()
+        bullet.direction = dir
+        bullet.weapon_owner = weapon_owner
+        bullet.speed = bullet_speed
+        bullet.damage = damage
+        
+        var root_scene = get_tree().root.get_child(0)
+        if root_scene:
+            root_scene.add_child(bullet)
 
-    # --- spawn position: prefer a Muzzle node, fallback to old offset ---
-    var spawn_pos: Vector2
-    if has_node("Muzzle"):
-        spawn_pos = $Muzzle.global_position
-    else:
-        spawn_pos = global_position + direction * 20
-
-    var bullet = bullet_scene.instantiate()
-
-    # --- add bullet to the active scene safely (avoid get_tree().current_scene property misuse) ---
-    var root_scene = get_tree().get_current_scene()
-    if root_scene == null:
-        root_scene = get_tree().get_root()
-    root_scene.add_child(bullet)
-
-    bullet.global_position = spawn_pos
-    bullet.rotation = global_rotation
-    bullet.direction = direction
-    bullet.weapon_owner = weapon_owner
-
-    print("shot")
     can_fire = false
     $FireCooldownTimer.start()
     shots_fired += 1
 
-    if shots_fired >= max_shots:
+    if shots_fired >= max_ammo:
         if weapon_owner:
             weapon_owner.has_weapon = false
             weapon_owner.current_weapon = null
         queue_free()
+
 
 func _on_FireCooldownTimer_timeout():
     can_fire = true
