@@ -9,6 +9,7 @@ size = Vector2(2, 0.5)
 [node name="Bullet" type="Area2D"]
 scale = Vector2(4.5, 4.5)
 script = ExtResource("1_14k46")
+speed = 750.0
 
 [node name="MediumBullet" type="Sprite2D" parent="."]
 rotation = 1.5708

@@ -31,5 +31,7 @@ wait_time = 5.0
 
 [node name="DecisionTimer" type="Timer" parent="."]
 
+[node name="WeaponHolder" type="Node2D" parent="."]
+
 [connection signal="timeout" from="ShapeShiftTimer" to="." method="_on_shape_shift_timer_timeout"]
 [connection signal="timeout" from="DecisionTimer" to="." method="_on_decision_timer_timeout"]

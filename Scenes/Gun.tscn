@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phyfd"]
 size = Vector2(40, 6)
 
-[node name="Gun" type="Area2D"]
+[node name="Gun" type="Area2D" groups=["Gun"]]
 script = ExtResource("1_m3ict")
 bullet_scene = ExtResource("2_cgpo0")
 
@@ -22,6 +22,9 @@ texture = ExtResource("3_37v6b")
 [node name="FireCooldownTimer" type="Timer" parent="."]
 
 [node name="AimTimer" type="Timer" parent="."]
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(21, -3)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="FireCooldownTimer" to="." method="_on_FireCooldownTimer_timeout"]

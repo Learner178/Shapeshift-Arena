@@ -28,13 +28,30 @@ func _process(delta):
         rotation = dir.angle()
 
 func update_target():
-    var candidates = get_tree().get_nodes_in_group("Player") + get_tree().get_nodes_in_group("Enemies")
-    candidates = candidates.filter(func(c): return c != weapon_owner)
+    # collect candidates (change group names here if your groups are different)
+    var candidates := []
+    candidates += get_tree().get_nodes_in_group("Player")
+    candidates += get_tree().get_nodes_in_group("Enemy")
+
+    # remove weapon owner and invalid nodes; ensure we only keep Node2D-like objects
+    candidates = candidates.filter(func(c):
+        return c != weapon_owner and is_instance_valid(c) and (c is Node2D)
+    )
+
     if candidates.is_empty():
         target_enemy = null
         return
-    target_enemy = candidates.min_by(func(e): return global_position.distance_to(e.global_position))
 
+    # find the closest one manually (min_by replacement)
+    var best : Node2D= null
+    var best_dist := INF
+    for c in candidates:
+        var d := global_position.distance_to(c.global_position)
+        if d < best_dist:
+            best_dist = d
+            best = c
+
+    target_enemy = best
 
 func fire():
     if not can_fire or weapon_owner == null or bullet_scene == null:
@@ -42,15 +59,27 @@ func fire():
         return
 
     var direction = Vector2.RIGHT.rotated(global_rotation)
-    var spawn_pos = global_position + direction * 20
+
+    # --- spawn position: prefer a Muzzle node, fallback to old offset ---
+    var spawn_pos: Vector2
+    if has_node("Muzzle"):
+        spawn_pos = $Muzzle.global_position
+    else:
+        spawn_pos = global_position + direction * 20
 
     var bullet = bullet_scene.instantiate()
+
+    # --- add bullet to the active scene safely (avoid get_tree().current_scene property misuse) ---
+    var root_scene = get_tree().get_current_scene()
+    if root_scene == null:
+        root_scene = get_tree().get_root()
+    root_scene.add_child(bullet)
+
     bullet.global_position = spawn_pos
     bullet.rotation = global_rotation
     bullet.direction = direction
     bullet.weapon_owner = weapon_owner
 
-    get_parent().add_child(bullet)
     print("shot")
     can_fire = false
     $FireCooldownTimer.start()

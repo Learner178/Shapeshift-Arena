@@ -10,7 +10,15 @@ func _ready():
 func spawn_gun():
     if !gun_scene or spawn_positions.is_empty():
         return
-    var gun = gun_scene.instantiate()
+
     var spawn_pos = spawn_positions.pick_random()
+
+    # --- NEW: check if there's already a gun at this spawn position ---
+    for child in get_parent().get_children():
+        if child.scene_file_path == gun_scene.resource_path:
+            if child.global_position.distance_to(spawn_pos.global_position) < 1.0:
+                return  # a gun is already here, skip spawning
+
+    var gun = gun_scene.instantiate()
     gun.global_position = spawn_pos.global_position
     get_parent().add_child(gun)
