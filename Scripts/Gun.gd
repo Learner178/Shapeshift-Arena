@@ -66,25 +66,28 @@ func _process(delta):
 
     if target_enemy:
         var dir = (target_enemy.global_position - global_position).normalized()
-        rotation = dir.angle()
+        global_rotation = dir.angle()
 
 func update_target():
-    # collect candidates (change group names here if your groups are different)
     var candidates := []
-    candidates += get_tree().get_nodes_in_group("Player")
-    candidates += get_tree().get_nodes_in_group("Enemy")
 
-    # remove weapon owner and invalid nodes; ensure we only keep Node2D-like objects
+    # Only target the opposite team
+    if weapon_owner.is_in_group("Player"):
+        candidates += get_tree().get_nodes_in_group("Enemy")
+    elif weapon_owner.is_in_group("Enemy"):
+        candidates += get_tree().get_nodes_in_group("Player")
+
+    # Remove invalid nodes just in case
     candidates = candidates.filter(func(c):
-        return c != weapon_owner and is_instance_valid(c) and (c is Node2D)
+        return is_instance_valid(c) and (c is Node2D)
     )
 
     if candidates.is_empty():
         target_enemy = null
         return
 
-    # find the closest one manually (min_by replacement)
-    var best : Node2D= null
+    # Find the closest target
+    var best: Node2D = null
     var best_dist := INF
     for c in candidates:
         var d := global_position.distance_to(c.global_position)
