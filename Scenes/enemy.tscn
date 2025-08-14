@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhnyshfdcev2b"]
+[gd_scene load_steps=4 format=3 uid="uid://bhnyshfdcev2b"]
 
 [ext_resource type="Script" uid="uid://yquc85bc1klb" path="res://Scripts/enemy.gd" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://jmq82ep626r4" path="res://Assets/Characters/icon.svg" id="2_afpow"]
-[ext_resource type="PackedScene" uid="uid://1prndupe7xjy" path="res://Scenes/Gun.tscn" id="3_afpow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(26, 26)
@@ -33,8 +32,6 @@ wait_time = 5.0
 [node name="DecisionTimer" type="Timer" parent="."]
 
 [node name="WeaponHolder" type="Node2D" parent="." groups=["Enemy"]]
-
-[node name="Gun" parent="WeaponHolder" instance=ExtResource("3_afpow")]
 
 [connection signal="timeout" from="ShapeShiftTimer" to="." method="_on_shape_shift_timer_timeout"]
 [connection signal="timeout" from="DecisionTimer" to="." method="_on_decision_timer_timeout"]

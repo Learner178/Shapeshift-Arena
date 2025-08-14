@@ -24,28 +24,28 @@ func _ready():
         "pistol":
             fire_rate = 0.5
             damage = 10
-            bullet_speed = 400
+            bullet_speed = 700
             spread = 0.0
             shots_per_fire = 1
             max_ammo = 6
         "rifle":
             fire_rate = 0.1
             damage = 8
-            bullet_speed = 600
+            bullet_speed = 900
             spread = 0.05
             shots_per_fire = 1
             max_ammo = 30
         "revolver":
             fire_rate = 0.6
             damage = 20
-            bullet_speed = 450
+            bullet_speed = 650
             spread = 0.02
             shots_per_fire = 1
             max_ammo = 6
         "shotgun":
             fire_rate = 1.0
             damage = 6
-            bullet_speed = 350
+            bullet_speed = 550
             spread = 0.2
             shots_per_fire = 5
             max_ammo = 2

@@ -14,7 +14,10 @@ extends RigidBody2D
 @onready var shapeshift_timer: Timer = $ShapeShiftTimer
 @onready var decision_timer: Timer = $DecisionTimer
 @onready var weapon_holder: Node = $WeaponHolder  # Assuming you have a WeaponHolder node
-@onready var player = get_node("player")
+@onready var player = null
+@export var max_health: int = 100
+
+var health: int = max_health
 
 var shapes = ["circle", "square", "capsule", "triangle", "rocket", "magnet", "hexagon", "helium"]
 var current_shape = ""
@@ -198,6 +201,18 @@ func aim_weapon_at_target(delta):
     var desired_angle = to_target.angle()
     # Smoothly rotate weapon toward target
     held_weapon.rotation = lerp_angle(held_weapon.rotation, desired_angle, 5 * delta)
+
+func take_damage(amount: int, knockback: Vector2 = Vector2.ZERO):
+    health -= amount
+    if knockback != Vector2.ZERO and self is RigidBody2D:
+        apply_impulse(Vector2.ZERO, knockback)
+    if health <= 0:
+        die()
+
+func die():
+    # Reset health or respawn depending on your game mode
+    health = 0
+    queue_free()  # or trigger respawn logic
 
 func check_for_metal_surfaces():
     # Implement magnet logic if needed
