@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bf48x8h3hcq7y"]
+[gd_scene load_steps=7 format=3 uid="uid://bf48x8h3hcq7y"]
 
 [ext_resource type="Script" uid="uid://c2ufdaivh55wy" path="res://Scripts/GunSpawner.gd" id="1_lor2l"]
 [ext_resource type="PackedScene" uid="uid://co2y7qi7j5tj0" path="res://Scenes/Pistol.tscn" id="2_f6q6s"]
 [ext_resource type="PackedScene" uid="uid://nhufslcux13n" path="res://Scenes/Revolver.tscn" id="3_4par7"]
 [ext_resource type="PackedScene" uid="uid://dwutk1fbwry6d" path="res://Scenes/Rifle.tscn" id="4_t6knd"]
 [ext_resource type="PackedScene" uid="uid://dufr6i2ft7j8b" path="res://Scenes/Shotgun.tscn" id="5_isl67"]
+[ext_resource type="PackedScene" uid="uid://dfasbld5bnq6n" path="res://Scenes/BubbleShield.tscn" id="6_4par7"]
 
 [node name="GunSpawner" type="Node2D" node_paths=PackedStringArray("spawn_positions")]
 script = ExtResource("1_lor2l")
-gun_scenes = Array[PackedScene]([ExtResource("2_f6q6s"), ExtResource("3_4par7"), ExtResource("4_t6knd"), ExtResource("5_isl67")])
+gun_scenes = Array[PackedScene]([ExtResource("2_f6q6s"), ExtResource("3_4par7"), ExtResource("4_t6knd"), ExtResource("5_isl67"), ExtResource("6_4par7")])
 spawn_positions = [NodePath("Node2D/Marker2D"), NodePath("Node2D/Marker2D2"), NodePath("Node2D/Marker2D3"), NodePath("Node2D/Marker2D4"), NodePath("Node2D/Marker2D5"), NodePath("Node2D/Marker2D6")]
 
 [node name="Timer" type="Timer" parent="."]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l7wh4qs8qh8k"
-path="res://.godot/imported/Group 16 (1).png-697603ecb08f945af1892321ad48d754.ctex"
+uid="uid://ciynlj7wasyk7"
+path="res://.godot/imported/Exp (1).png-229986ce64cadf5bca4f9f99cbb92d20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Industrial Tileset - Starter Pack 32p/Group 16 (1).png"
-dest_files=["res://.godot/imported/Group 16 (1).png-697603ecb08f945af1892321ad48d754.ctex"]
+source_file="res://Assets/Industrial Tileset - Starter Pack 32p/Exp (1).png"
+dest_files=["res://.godot/imported/Exp (1).png-229986ce64cadf5bca4f9f99cbb92d20.ctex"]
 
 [params]
 

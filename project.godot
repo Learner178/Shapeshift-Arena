@@ -51,6 +51,11 @@ attack={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_4="Bullet"
+2d_render/layer_5="Shield"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

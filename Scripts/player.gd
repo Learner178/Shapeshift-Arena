@@ -26,246 +26,246 @@ var weapon_owner : Node = null
 
 
 func _ready():
-    randomize()
-    shapeshift()
-    start_shapeshift_timer()
+	randomize()
+	shapeshift()
+	start_shapeshift_timer()
 
 func _physics_process(delta):
-    if $ArrowHolder:
-        $ArrowHolder.rotation = -rotation
-    $WeaponHolder.rotation = -rotation
-    ground_check.rotation = -rotation
+	if $ArrowHolder:
+		$ArrowHolder.rotation = -rotation
+	$WeaponHolder.rotation = -rotation
+	ground_check.rotation = -rotation
 
-    var direction := 0
-    if Input.is_action_pressed("move_left"):
-        direction -= 1
-    if Input.is_action_pressed("move_right"):
-        direction += 1
+	var direction := 0
+	if Input.is_action_pressed("move_left"):
+		direction -= 1
+	if Input.is_action_pressed("move_right"):
+		direction += 1
 
-    if Input.is_action_just_pressed("attack") and has_weapon and current_weapon:
-        current_weapon.fire()
-
-
-    match current_shape:
-        "square", "triangle":
-            if direction != 0 and ray_ground.is_colliding():
-                apply_central_force(Vector2(direction * slide_force, 0))
-            else:
-                apply_central_force(Vector2(direction * slide_force * 0.5,0))
-            if Input.is_action_just_pressed("jump") and ray_ground.is_colliding():
-                apply_central_impulse(Vector2(0, -jump_force))
-                rotate(deg_to_rad(360))  # Full flip
-
-        "circle", "hexagon":
-            if direction != 0:
-                apply_torque_impulse(direction * move_force * delta)
-                # Add subtle linear push (ice-friendly)
-                linear_velocity.x += direction * 500.0 * delta
-            if Input.is_action_just_pressed("jump") and ray_ground.is_colliding():
-                apply_central_impulse(Vector2(0, -jump_force))
-
-        "capsule":
-            if direction != 0:
-                apply_torque_impulse(direction * move_force * delta)
-                # Add subtle linear push (ice-friendly)
-                linear_velocity.x += direction * 500.0 * delta
-            if Input.is_action_just_pressed("jump") and ray_ground.is_colliding():
-                apply_central_impulse(Vector2(0, -jump_force * bounce_force))
-
-        "rocket":
-                var rocket_max_angle_deg = 80
-                var rocket_tilt_speed = 60.0
-                var rocket_upright_damping = 4.0
-                var rocket_thrust = 1000.0
-
-                if direction != 0:
-                    $Pivot.rotation_degrees += direction * rocket_tilt_speed * delta
-                    $Pivot.rotation_degrees = clamp($Pivot.rotation_degrees, -rocket_max_angle_deg, rocket_max_angle_deg)
-                else:
-                    # Return to upright when idle
-                    $Pivot.rotation = lerp($Pivot.rotation, 0.0, rocket_upright_damping * delta)
-
-                # 2. Thrust in the tilted direction (UP relative to pivot)
-                if Input.is_action_pressed("jump"):
-                    var thrust_dir = -$Pivot.transform.y.normalized()  # Local UP direction
-                    apply_central_impulse(thrust_dir * rocket_thrust * delta)
+	if Input.is_action_just_pressed("attack") and has_weapon and current_weapon:
+		current_weapon.fire()
 
 
-        "helium":
-            if direction != 0:
-                apply_central_force(Vector2(direction * float_speed * 2.5, 0))
-            apply_central_force(Vector2(0, -float_speed))  # slow float up
+	match current_shape:
+		"square", "triangle":
+			if direction != 0 and ray_ground.is_colliding():
+				apply_central_force(Vector2(direction * slide_force, 0))
+			else:
+				apply_central_force(Vector2(direction * slide_force * 0.5,0))
+			if Input.is_action_just_pressed("jump") and ray_ground.is_colliding():
+				apply_central_impulse(Vector2(0, -jump_force))
+				rotate(deg_to_rad(360))  # Full flip
 
-        "magnet":
-            if direction != 0:
-                apply_torque_impulse(direction * move_force * delta)
-                # Add subtle linear push (ice-friendly)
-                linear_velocity.x += direction * 500.0 * delta
-            if Input.is_action_just_pressed("jump") and ray_ground.is_colliding():
-                apply_central_impulse(Vector2(0, -jump_force))
-            check_for_metal_surfaces()
-            
-    if lock_body_rotation:
-        rotation = 0
-        angular_velocity = 0
+		"circle", "hexagon":
+			if direction != 0:
+				apply_torque_impulse(direction * move_force * delta)
+				# Add subtle linear push (ice-friendly)
+				linear_velocity.x += direction * 500.0 * delta
+			if Input.is_action_just_pressed("jump") and ray_ground.is_colliding():
+				apply_central_impulse(Vector2(0, -jump_force))
+
+		"capsule":
+			if direction != 0:
+				apply_torque_impulse(direction * move_force * delta)
+				# Add subtle linear push (ice-friendly)
+				linear_velocity.x += direction * 500.0 * delta
+			if Input.is_action_just_pressed("jump") and ray_ground.is_colliding():
+				apply_central_impulse(Vector2(0, -jump_force * bounce_force))
+
+		"rocket":
+				var rocket_max_angle_deg = 80
+				var rocket_tilt_speed = 60.0
+				var rocket_upright_damping = 4.0
+				var rocket_thrust = 1000.0
+
+				if direction != 0:
+					$Pivot.rotation_degrees += direction * rocket_tilt_speed * delta
+					$Pivot.rotation_degrees = clamp($Pivot.rotation_degrees, -rocket_max_angle_deg, rocket_max_angle_deg)
+				else:
+					# Return to upright when idle
+					$Pivot.rotation = lerp($Pivot.rotation, 0.0, rocket_upright_damping * delta)
+
+				# 2. Thrust in the tilted direction (UP relative to pivot)
+				if Input.is_action_pressed("jump"):
+					var thrust_dir = -$Pivot.transform.y.normalized()  # Local UP direction
+					apply_central_impulse(thrust_dir * rocket_thrust * delta)
+
+
+		"helium":
+			if direction != 0:
+				apply_central_force(Vector2(direction * float_speed * 2.5, 0))
+			apply_central_force(Vector2(0, -float_speed))  # slow float up
+
+		"magnet":
+			if direction != 0:
+				apply_torque_impulse(direction * move_force * delta)
+				# Add subtle linear push (ice-friendly)
+				linear_velocity.x += direction * 500.0 * delta
+			if Input.is_action_just_pressed("jump") and ray_ground.is_colliding():
+				apply_central_impulse(Vector2(0, -jump_force))
+			check_for_metal_surfaces()
+			
+	if lock_body_rotation:
+		rotation = 0
+		angular_velocity = 0
 
 
 func shapeshift():
-    var selected = shapes.pick_random()
-    current_shape = selected
+	var selected = shapes.pick_random()
+	current_shape = selected
 
-    match selected:
-        "circle":
-            shape.shape = CircleShape2D.new()
-            sprite.texture = preload("res://Assets/Characters/football.png")
-            sprite.scale = Vector2(0.025, 0.025)
-            apply_physics_material(0.5, 0.2, 1.0, 0.0, 0.1)
-            
-            lock_body_rotation = false
+	match selected:
+		"circle":
+			shape.shape = CircleShape2D.new()
+			sprite.texture = preload("res://Assets/Characters/football.png")
+			sprite.scale = Vector2(0.025, 0.025)
+			apply_physics_material(0.5, 0.2, 1.0, 0.0, 0.1)
+			
+			lock_body_rotation = false
 
-        "square":
-            var rect = RectangleShape2D.new()
-            rect.extents = Vector2(10, 10)
-            shape.shape = rect
-            sprite.texture = preload("res://Assets/Characters/square.png")
-            sprite.scale = Vector2(0.08, 0.08)
-            apply_physics_material(0.4, 0.1, 1.0, 0.0, 0.2)
-            
-            lock_body_rotation = false
+		"square":
+			var rect = RectangleShape2D.new()
+			rect.extents = Vector2(10, 10)
+			shape.shape = rect
+			sprite.texture = preload("res://Assets/Characters/square.png")
+			sprite.scale = Vector2(0.08, 0.08)
+			apply_physics_material(0.4, 0.1, 1.0, 0.0, 0.2)
+			
+			lock_body_rotation = false
 
-        "capsule":
-            shape.shape = CapsuleShape2D.new()
-            sprite.texture = preload("res://Assets/Characters/american-football.png")
-            sprite.scale = Vector2(0.02, 0.02)
-            sprite.rotation_degrees = 90
-            apply_physics_material(0.4, 0.6, 1.0, 0.1, 0.2)
-            
-            lock_body_rotation = false
+		"capsule":
+			shape.shape = CapsuleShape2D.new()
+			sprite.texture = preload("res://Assets/Characters/american-football.png")
+			sprite.scale = Vector2(0.02, 0.02)
+			sprite.rotation_degrees = 90
+			apply_physics_material(0.4, 0.6, 1.0, 0.1, 0.2)
+			
+			lock_body_rotation = false
 
-        "triangle":
-            var tri = ConvexPolygonShape2D.new()
-            tri.points = [Vector2(-12, 12), Vector2(0, -12), Vector2(12, 12)]
-            shape.shape = tri
-            sprite.texture = preload("res://Assets/Characters/triangle.png")
-            sprite.scale = Vector2(0.03, 0.03)
-            apply_physics_material(0.3, 0.2, 1.0, 0.0, 0.2) 
-            
-            lock_body_rotation = false
+		"triangle":
+			var tri = ConvexPolygonShape2D.new()
+			tri.points = [Vector2(-12, 12), Vector2(0, -12), Vector2(12, 12)]
+			shape.shape = tri
+			sprite.texture = preload("res://Assets/Characters/triangle.png")
+			sprite.scale = Vector2(0.03, 0.03)
+			apply_physics_material(0.3, 0.2, 1.0, 0.0, 0.2) 
+			
+			lock_body_rotation = false
 
-        "rocket":
-            var rect = RectangleShape2D.new()
-            rect.extents = Vector2(8, 16)
-            shape.shape = rect
-            sprite.texture = preload("res://Assets/Characters/rocket.png")
-            sprite.scale = Vector2(0.05, 0.05)
-            sprite.rotation_degrees = 0
-            $Pivot.rotation = 0
-            apply_physics_material(0.4, 0.2, 0.3, 1.0, 0.8)
-            
-            # Lock rotation for rocket only
-            lock_body_rotation = true
-            rotation = 0  # ensure upright
-            angular_velocity = 0
+		"rocket":
+			var rect = RectangleShape2D.new()
+			rect.extents = Vector2(8, 16)
+			shape.shape = rect
+			sprite.texture = preload("res://Assets/Characters/rocket.png")
+			sprite.scale = Vector2(0.05, 0.05)
+			sprite.rotation_degrees = 0
+			$Pivot.rotation = 0
+			apply_physics_material(0.4, 0.2, 0.3, 1.0, 0.8)
+			
+			# Lock rotation for rocket only
+			lock_body_rotation = true
+			rotation = 0  # ensure upright
+			angular_velocity = 0
 
-        "hexagon":
-            var hex = ConvexPolygonShape2D.new()
-            var size = 12.0
-            hex.points = [
-                Vector2(size * cos(deg_to_rad(0)), size * sin(deg_to_rad(0))),
-                Vector2(size * cos(deg_to_rad(60)), size * sin(deg_to_rad(60))),
-                Vector2(size * cos(deg_to_rad(120)), size * sin(deg_to_rad(120))),
-                Vector2(size * cos(deg_to_rad(180)), size * sin(deg_to_rad(180))),
-                Vector2(size * cos(deg_to_rad(240)), size * sin(deg_to_rad(240))),
-                Vector2(size * cos(deg_to_rad(300)), size * sin(deg_to_rad(300)))
-            ]
-            shape.shape = hex
-            sprite.texture = preload("res://Assets/Characters/hexagon.png")
-            sprite.rotation_degrees = 30
-            sprite.scale = Vector2(0.05, 0.05)
-            apply_physics_material(0.5, 0.2, 1.0, 0.0, 0.1)
-            
-            lock_body_rotation = false
+		"hexagon":
+			var hex = ConvexPolygonShape2D.new()
+			var size = 12.0
+			hex.points = [
+				Vector2(size * cos(deg_to_rad(0)), size * sin(deg_to_rad(0))),
+				Vector2(size * cos(deg_to_rad(60)), size * sin(deg_to_rad(60))),
+				Vector2(size * cos(deg_to_rad(120)), size * sin(deg_to_rad(120))),
+				Vector2(size * cos(deg_to_rad(180)), size * sin(deg_to_rad(180))),
+				Vector2(size * cos(deg_to_rad(240)), size * sin(deg_to_rad(240))),
+				Vector2(size * cos(deg_to_rad(300)), size * sin(deg_to_rad(300)))
+			]
+			shape.shape = hex
+			sprite.texture = preload("res://Assets/Characters/hexagon.png")
+			sprite.rotation_degrees = 30
+			sprite.scale = Vector2(0.05, 0.05)
+			apply_physics_material(0.5, 0.2, 1.0, 0.0, 0.1)
+			
+			lock_body_rotation = false
 
-        "magnet":
-            shape.shape = CircleShape2D.new()
-            sprite.texture = preload("res://Assets/Characters/magnet.png")
-            sprite.scale = Vector2(0.12, 0.12)
-            apply_physics_material(0.75, 0.1, 1.0, 0.0, 0.05)
-            
-            lock_body_rotation = false
+		"magnet":
+			shape.shape = CircleShape2D.new()
+			sprite.texture = preload("res://Assets/Characters/magnet.png")
+			sprite.scale = Vector2(0.12, 0.12)
+			apply_physics_material(0.75, 0.1, 1.0, 0.0, 0.05)
+			
+			lock_body_rotation = false
 
-        "helium":
-            shape.shape = CircleShape2D.new()
-            sprite.texture = preload("res://Assets/Characters/Balloon.png")
-            sprite.scale = Vector2(0.14, 0.14)
-            sprite.rotation_degrees = 0
-            $Pivot.rotation = 0
-            apply_physics_material(0.2, 0.1, 0.05, 0.2, 0.05)
-            
-            # Lock rotation to stay upright
-            lock_body_rotation = true
-            rotation = 0
-            angular_velocity = 0   
+		"helium":
+			shape.shape = CircleShape2D.new()
+			sprite.texture = preload("res://Assets/Characters/Balloon.png")
+			sprite.scale = Vector2(0.14, 0.14)
+			sprite.rotation_degrees = 0
+			$Pivot.rotation = 0
+			apply_physics_material(0.2, 0.1, 0.05, 0.2, 0.05)
+			
+			# Lock rotation to stay upright
+			lock_body_rotation = true
+			rotation = 0
+			angular_velocity = 0   
 
-    print("Shapeshifted into: ", selected)
+	print("Shapeshifted into: ", selected)
 
 func start_shapeshift_timer():
-    shapeshift_timer.wait_time = 5.0
-    shapeshift_timer.start()
+	shapeshift_timer.wait_time = 5.0
+	shapeshift_timer.start()
 
 func _on_shape_shift_timer_timeout():
-    shapeshift()
-    start_shapeshift_timer()
+	shapeshift()
+	start_shapeshift_timer()
 
 func take_damage(amount: int, knockback: Vector2 = Vector2.ZERO):
-    health -= amount
-    if knockback != Vector2.ZERO and self is RigidBody2D:
-        apply_impulse(Vector2.ZERO, knockback)
-    if health <= 0:
-        die()
+	health -= amount
+	if knockback != Vector2.ZERO and self is RigidBody2D:
+		apply_impulse(Vector2.ZERO, knockback)
+	if health <= 0:
+		die()
 
 func die():
-    # Reset health or respawn depending on your game mode
-    health = 0
-    queue_free()  # or trigger respawn logic
+	# Reset health or respawn depending on your game mode
+	health = 0
+	queue_free()  # or trigger respawn logic
 
 func check_for_metal_surfaces():
-    # Placeholder for magnet attraction logic
-    # You can scan for metal-tagged areas using Area2D or RayCast2D
-    pass
-    
+	# Placeholder for magnet attraction logic
+	# You can scan for metal-tagged areas using Area2D or RayCast2D
+	pass
+	
 func apply_physics_material(friction: float, bounce: float, gravity_scale := 1.0, linear_damp := 0.0, angular_damp := 0.0):
-    var mat := PhysicsMaterial.new()
-    mat.friction = friction
-    mat.bounce = bounce
-    physics_material_override = mat
-    
-    self.gravity_scale = gravity_scale
-    self.linear_damp = linear_damp
-    self.angular_damp = angular_damp
-    
+	var mat := PhysicsMaterial.new()
+	mat.friction = friction
+	mat.bounce = bounce
+	physics_material_override = mat
+	
+	self.gravity_scale = gravity_scale
+	self.linear_damp = linear_damp
+	self.angular_damp = angular_damp
+	
 
 func pickup_weapon(weapon):
-    if has_weapon:
-        return
+	if has_weapon:
+		return
 
-    has_weapon = true
-    current_weapon = weapon
-    weapon_owner = self
+	has_weapon = true
+	current_weapon = weapon
+	weapon_owner = self
 
-    weapon.weapon_owner = self
-    weapon.get_parent().remove_child(weapon)
-    $WeaponHolder.add_child(weapon)
+	weapon.weapon_owner = self
+	weapon.get_parent().remove_child(weapon)
+	$WeaponHolder.add_child(weapon)
 
-    weapon.global_position = $WeaponHolder.global_position
-    weapon.rotation = 0
-    weapon.position = Vector2.ZERO  # Local to WeaponHolder
+	weapon.global_position = $WeaponHolder.global_position
+	weapon.rotation = 0
+	weapon.position = Vector2.ZERO  # Local to WeaponHolder
 
-    # Optionally disable collisions so it doesn't interfere
-    if weapon.has_node("CollisionShape2D"):
-        weapon.get_node("CollisionShape2D").disabled = true
+	# Optionally disable collisions so it doesn't interfere
+	if weapon.has_node("CollisionShape2D"):
+		weapon.get_node("CollisionShape2D").disabled = true
 
 
 func on_weapon_lost():
-    has_weapon = false
-    current_weapon = null
+	has_weapon = false
+	current_weapon = null
